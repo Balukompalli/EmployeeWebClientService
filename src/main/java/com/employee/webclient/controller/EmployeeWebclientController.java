@@ -14,14 +14,6 @@ public class EmployeeWebclientController {
     @Autowired
     WebClient webClient;
 
-    //
-//    public void init() {
-//        webClient = WebClient.builder()
-//                .baseUrl("http://localhost:9090/employee")
-//                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-//                .build();
-//    }
-
     @PostMapping("/saveEmployee")
     public Mono<String> saveEmployee(@RequestBody EmployeeRequest employeeRequest) {
         return webClient.post().uri("/saveEmployee").syncBody(employeeRequest).retrieve().bodyToMono(String.class);
